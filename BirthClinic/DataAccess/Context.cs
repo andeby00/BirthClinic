@@ -10,7 +10,7 @@ namespace BirthClinic.DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder ob)
         {
             ob.UseSqlServer(
-                @"Data Source = (localdb)\dab_server; Initial Catalog = BookStore; Integrated Security = True; Connect Timeout = 30; Encrypt = False; TrustServerCertificate = False; ApplicationIntent = ReadWrite; MultiSubnetFailover = False");
+                @"Data Source = (localdb)\dab_server; Initial Catalog = BirthClinicDb; Integrated Security = True;");
 
         }
 
