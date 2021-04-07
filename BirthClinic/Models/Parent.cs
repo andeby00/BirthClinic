@@ -14,5 +14,6 @@ namespace BirthClinic.Models
         public int? RestRoomId { get; set; }
         public MaternityRoom? MaternityRoom { get; set; }
         public int? MaternityRoomId { get; set; }
+        public List<Child> Child { get; set; }
     }
 }
