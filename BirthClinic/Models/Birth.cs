@@ -8,5 +8,7 @@ namespace BirthClinic.Models
     {
         public int BirthId { get; set; }
         public DateTime TimeStamp { get; set; }
+        
+        public Parent parent { get; set; }
     }
 }
