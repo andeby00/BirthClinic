@@ -6,9 +6,10 @@ namespace BirthClinic.Models
 {
     public class Birth
     {
-        public int BirthId { get; set; }
-        public DateTime TimeStamp { get; set; }
-        
-        public Parent parent { get; set; }
+        public int Id { get; set; }
+        public DateTime TimeStamp { get; set; }       
+        public List<Parent> Parent { get; set; }
+        public BirthRoom BirthRoom { get; set; }
+        public int BirthRoomID { get; set; }
     }
 }
