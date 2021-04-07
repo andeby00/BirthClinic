@@ -10,6 +10,6 @@ namespace BirthClinic.Models
         public int RoomNumber { get; set; }
         public BirthClinc BirthClinc { get; set; }
         public int BirthClinitID { get; set; }
-        public Birth Birth { get; set; }
+        public List<Birth> Birth { get; set; }
     }
 }
