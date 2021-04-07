@@ -7,5 +7,6 @@ namespace BirthClinic.Models
     public class MaternityRoom
     {
         public int Id { get; set; }
+        public BirthClinic BirthClinic { get; set; }
     }
 }
