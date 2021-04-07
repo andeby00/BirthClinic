@@ -6,5 +6,6 @@ namespace BirthClinic.Models
 {
     public class RestRoom
     {
+        public int Id { get; set; }
     }
 }

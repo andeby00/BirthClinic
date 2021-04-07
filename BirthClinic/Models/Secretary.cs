@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BirthClinic.Models
 {
-    public class Secretary
+    public class Secretary : Clinician
     {
     }
 }
