@@ -6,7 +6,6 @@ namespace BirthClinic.Models
 {
     public class Parent
     {
-#nullable enable
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -17,6 +16,5 @@ namespace BirthClinic.Models
         public int? RestRoomId { get; set; }
         public MaternityRoom? MaternityRoom { get; set; }
         public int? MaternityRoomId { get; set; }
-#nullable disable
     }
 }
