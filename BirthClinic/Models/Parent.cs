@@ -6,13 +6,14 @@ namespace BirthClinic.Models
 {
     public class Parent
     {
+#nullable enable
         public int Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DoB { get; set; }
-        public BirthRoom BirthRoom { get; set; }
-        public RestRoom RestRoom { get; set; }
-        public MaternityRoom MaternityRoom { get; set; }
-        
+        public BirthRoom? BirthRoom { get; set; }
+        public RestRoom? RestRoom { get; set; }
+        public MaternityRoom? MaternityRoom { get; set; }
+#nullable disable
     }
 }
