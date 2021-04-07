@@ -4,7 +4,8 @@ using System.Text;
 
 namespace BirthClinic.Models
 {
-    class SocialHealthAss : Clinician
+    public class SocialHealthAss : Clinician
     {
+        public int Id { get; set; }
     }
 }

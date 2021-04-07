@@ -6,5 +6,6 @@ namespace BirthClinic.Models
 {
     public class Nurse : Clinician
     {
+        public int Id { get; set; }
     }
 }
