@@ -12,6 +12,5 @@ namespace BirthClinic.Models
         public int BirthClinicId {get;set;}
         public List<Parent> Parents { get; set; }
 
-
     }
 }
