@@ -21,6 +21,7 @@ namespace BirthClinic.DataAccess
         public DbSet<Parent> parents { get; set; }
         public DbSet<RestRoom> restRooms { get; set; }
         public DbSet<Secretary> secretaries { get; set; }
+        public DbSet<Shift> shifts { get; set; }
         public DbSet<SocialHealthAss> socialHealthAsses { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder ob)
