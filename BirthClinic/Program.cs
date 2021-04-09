@@ -17,17 +17,6 @@ namespace BirthClinicApp
             
         }
 
-        public void CreateStaff()
-        {
-           
-        }
-
-        public void CreateClinic()
-        {
-            BirthClinic bc = new BirthClinic
-
-        }
-
 
         public string GetRandomFirstName()
         {
