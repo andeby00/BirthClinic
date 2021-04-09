@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BirthClinicApp.Models
+namespace BirthClinic.Models
 {
     public class Parent
     {
@@ -15,5 +15,6 @@ namespace BirthClinicApp.Models
         public MaternityRoom? MaternityRoom { get; set; }
         public int? MaternityRoomId { get; set; }
         public List<Child> Child { get; set; }
+        public Birth birth { get; set; }
     }
 }

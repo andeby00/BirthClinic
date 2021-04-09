@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BirthClinicApp.Migrations
+namespace BirthClinic.Migrations
 {
     public partial class AddedChildToParent : Migration
     {
