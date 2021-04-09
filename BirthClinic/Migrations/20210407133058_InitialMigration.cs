@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace BirthClinic.Migrations
+namespace BirthClinicApp.Migrations
 {
     public partial class InitialMigration : Migration
     {

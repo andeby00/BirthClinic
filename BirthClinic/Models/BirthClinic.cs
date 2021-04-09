@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BirthClinic.Models
+namespace BirthClinicApp.Models
 {
     public class BirthClinic
     {
+
         public int ID { get; set; }
         public string ClinicName { get; set; }
         public string Address { get; set; }

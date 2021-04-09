@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace BirthClinic.Models
+namespace BirthClinicApp.Models
 {
     public class RestRoom
     {

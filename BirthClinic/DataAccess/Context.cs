@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using BirthClinic.Models;
+using BirthClinicApp.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BirthClinic.DataAccess
+namespace BirthClinicApp.DataAccess
 {
     public class Context : DbContext
     {
