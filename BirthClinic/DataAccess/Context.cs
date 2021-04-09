@@ -10,7 +10,7 @@ namespace BirthClinicApp.DataAccess
     {
 
         public DbSet<Birth> births { get; set; }
-        public DbSet<Models.BirthClinic> birthClinics { get; set; }
+        public DbSet<Models.Clinic> birthClinics { get; set; }
         public DbSet<BirthRoom> birthRooms { get; set; }
         public DbSet<Child> children { get; set; }
         public DbSet<Clinician> clinicians { get; set; }

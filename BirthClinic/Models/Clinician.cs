@@ -10,7 +10,7 @@ namespace BirthClinicApp.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DoB { get; set; }
-        public BirthClinic BirthClinic { get; set; }
+        public Clinic BirthClinic { get; set; }
         public int BirthClinicId { get; set; }
 
     }

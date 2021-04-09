@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BirthClinicApp.Models
 {
-    public class BirthClinic
+    public class Clinic
     {
 
         public int ID { get; set; }
