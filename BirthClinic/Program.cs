@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using BirthClinicApp.Models;
+using BirthClinic.Models;
 
 namespace BirthClinicApp
 {
