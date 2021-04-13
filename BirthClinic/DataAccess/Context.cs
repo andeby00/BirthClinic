@@ -8,21 +8,19 @@ namespace BirthClinic.DataAccess
 {
     public class Context : DbContext
     {
-
-        public DbSet<Birth> births { get; set; }
-        public DbSet<Models.Clinic> birthClinics { get; set; }
-        public DbSet<BirthRoom> birthRooms { get; set; }
-        public DbSet<Child> children { get; set; }
-        public DbSet<Clinician> clinicians { get; set; }
-        public DbSet<Doctor> doctors { get; set; }
-        public DbSet<MaternityRoom> maternityRooms { get; set; }
-        public DbSet<Midwife> midwives { get; set; }
-        public DbSet<Nurse> nurses { get; set; }
-        public DbSet<Parent> parents { get; set; }
-        public DbSet<RestRoom> restRooms { get; set; }
-        public DbSet<Secretary> secretaries { get; set; }
-        public DbSet<Shift> shifts { get; set; }
-        public DbSet<SocialHealthAss> socialHealthAsses { get; set; }
+        public DbSet<Birth> birth { get; set; }
+        public DbSet<BirthRoom> birthRoom { get; set; }
+        public DbSet<Child> child { get; set; }
+        public DbSet<Clinician> clinician { get; set; }
+        public DbSet<Doctor> doctor { get; set; }
+        public DbSet<MaternityRoom> maternityRoom { get; set; }
+        public DbSet<Midwife> midwife { get; set; }
+        public DbSet<Nurse> nurse { get; set; }
+        public DbSet<Parent> parent { get; set; }
+        public DbSet<RestRoom> restRoom { get; set; }
+        public DbSet<Secretary> secretary { get; set; }
+        public DbSet<Shift> shift { get; set; }
+        public DbSet<SocialHealthAss> socialHealthAss { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder ob)
         {

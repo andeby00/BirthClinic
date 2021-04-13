@@ -4,14 +4,16 @@ using BirthClinic.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BirthClinic.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20210413072655_AddedShift")]
+    partial class AddedShift
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -32,14 +34,14 @@ namespace BirthClinic.Migrations
                     b.Property<int?>("Ended")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("ScheduledTime")
+                    b.Property<DateTime>("SceduledTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.HasIndex("BirthRoomID");
 
-                    b.ToTable("birth");
+                    b.ToTable("births");
                 });
 
             modelBuilder.Entity("BirthClinic.Models.BirthRoom", b =>
@@ -49,12 +51,17 @@ namespace BirthClinic.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BirthClinicID")
+                        .HasColumnType("int");
+
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
                     b.HasKey("BirthRoomId");
 
-                    b.ToTable("birthRoom");
+                    b.HasIndex("BirthClinicID");
+
+                    b.ToTable("birthRooms");
                 });
 
             modelBuilder.Entity("BirthClinic.Models.Child", b =>
@@ -77,7 +84,25 @@ namespace BirthClinic.Migrations
 
                     b.HasIndex("BirthId");
 
-                    b.ToTable("child");
+                    b.ToTable("children");
+                });
+
+            modelBuilder.Entity("BirthClinic.Models.Clinic", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClinicName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("birthClinics");
                 });
 
             modelBuilder.Entity("BirthClinic.Models.Clinician", b =>
@@ -87,7 +112,10 @@ namespace BirthClinic.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("BirthId")
+                    b.Property<int>("BirthClinicId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BirthId")
                         .HasColumnType("int");
 
                     b.Property<string>("Discriminator")
@@ -108,11 +136,13 @@ namespace BirthClinic.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BirthClinicId");
+
                     b.HasIndex("BirthId");
 
                     b.HasIndex("ShiftId");
 
-                    b.ToTable("clinician");
+                    b.ToTable("clinicians");
 
                     b.HasDiscriminator<string>("Discriminator").HasValue("Clinician");
                 });
@@ -124,12 +154,17 @@ namespace BirthClinic.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BirthClinicId")
+                        .HasColumnType("int");
+
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("maternityRoom");
+                    b.HasIndex("BirthClinicId");
+
+                    b.ToTable("maternityRooms");
                 });
 
             modelBuilder.Entity("BirthClinic.Models.Parent", b =>
@@ -138,9 +173,6 @@ namespace BirthClinic.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("BirthId")
-                        .HasColumnType("int");
 
                     b.Property<DateTime>("DoB")
                         .HasColumnType("datetime2");
@@ -157,15 +189,18 @@ namespace BirthClinic.Migrations
                     b.Property<int?>("RestRoomId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.Property<int?>("birthId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("BirthId");
+                    b.HasKey("Id");
 
                     b.HasIndex("MaternityRoomId");
 
                     b.HasIndex("RestRoomId");
 
-                    b.ToTable("parent");
+                    b.HasIndex("birthId");
+
+                    b.ToTable("parents");
                 });
 
             modelBuilder.Entity("BirthClinic.Models.RestRoom", b =>
@@ -175,12 +210,17 @@ namespace BirthClinic.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("BirthClinicId")
+                        .HasColumnType("int");
+
                     b.Property<int>("RoomNumber")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("restRoom");
+                    b.HasIndex("BirthClinicId");
+
+                    b.ToTable("restRooms");
                 });
 
             modelBuilder.Entity("BirthClinic.Models.Shift", b =>
@@ -190,6 +230,9 @@ namespace BirthClinic.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("ClinicId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
@@ -198,7 +241,9 @@ namespace BirthClinic.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("shift");
+                    b.HasIndex("ClinicId");
+
+                    b.ToTable("shifts");
                 });
 
             modelBuilder.Entity("ChildParent", b =>
@@ -262,10 +307,21 @@ namespace BirthClinic.Migrations
                     b.Navigation("BirthRoom");
                 });
 
+            modelBuilder.Entity("BirthClinic.Models.BirthRoom", b =>
+                {
+                    b.HasOne("BirthClinic.Models.Clinic", "BirthClinic")
+                        .WithMany("BirthRooms")
+                        .HasForeignKey("BirthClinicID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BirthClinic");
+                });
+
             modelBuilder.Entity("BirthClinic.Models.Child", b =>
                 {
                     b.HasOne("BirthClinic.Models.Birth", "Birth")
-                        .WithMany("Children")
+                        .WithMany("Childs")
                         .HasForeignKey("BirthId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -275,9 +331,17 @@ namespace BirthClinic.Migrations
 
             modelBuilder.Entity("BirthClinic.Models.Clinician", b =>
                 {
+                    b.HasOne("BirthClinic.Models.Clinic", "BirthClinic")
+                        .WithMany("Clinicians")
+                        .HasForeignKey("BirthClinicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BirthClinic.Models.Birth", "Birth")
                         .WithMany("Clinicians")
-                        .HasForeignKey("BirthId");
+                        .HasForeignKey("BirthId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("BirthClinic.Models.Shift", "Shift")
                         .WithMany("Clinicians")
@@ -287,15 +351,24 @@ namespace BirthClinic.Migrations
 
                     b.Navigation("Birth");
 
+                    b.Navigation("BirthClinic");
+
                     b.Navigation("Shift");
+                });
+
+            modelBuilder.Entity("BirthClinic.Models.MaternityRoom", b =>
+                {
+                    b.HasOne("BirthClinic.Models.Clinic", "BirthClinic")
+                        .WithMany("MaternityRooms")
+                        .HasForeignKey("BirthClinicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BirthClinic");
                 });
 
             modelBuilder.Entity("BirthClinic.Models.Parent", b =>
                 {
-                    b.HasOne("BirthClinic.Models.Birth", "Birth")
-                        .WithMany("Parent")
-                        .HasForeignKey("BirthId");
-
                     b.HasOne("BirthClinic.Models.MaternityRoom", "MaternityRoom")
                         .WithMany("Parents")
                         .HasForeignKey("MaternityRoomId");
@@ -304,11 +377,37 @@ namespace BirthClinic.Migrations
                         .WithMany("Parents")
                         .HasForeignKey("RestRoomId");
 
-                    b.Navigation("Birth");
+                    b.HasOne("BirthClinic.Models.Birth", "birth")
+                        .WithMany("Parent")
+                        .HasForeignKey("birthId");
+
+                    b.Navigation("birth");
 
                     b.Navigation("MaternityRoom");
 
                     b.Navigation("RestRoom");
+                });
+
+            modelBuilder.Entity("BirthClinic.Models.RestRoom", b =>
+                {
+                    b.HasOne("BirthClinic.Models.Clinic", "BirthClinic")
+                        .WithMany("RestRooms")
+                        .HasForeignKey("BirthClinicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("BirthClinic");
+                });
+
+            modelBuilder.Entity("BirthClinic.Models.Shift", b =>
+                {
+                    b.HasOne("BirthClinic.Models.Clinic", "Clinic")
+                        .WithMany()
+                        .HasForeignKey("ClinicId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Clinic");
                 });
 
             modelBuilder.Entity("ChildParent", b =>
@@ -328,7 +427,7 @@ namespace BirthClinic.Migrations
 
             modelBuilder.Entity("BirthClinic.Models.Birth", b =>
                 {
-                    b.Navigation("Children");
+                    b.Navigation("Childs");
 
                     b.Navigation("Clinicians");
 
@@ -338,6 +437,17 @@ namespace BirthClinic.Migrations
             modelBuilder.Entity("BirthClinic.Models.BirthRoom", b =>
                 {
                     b.Navigation("Birth");
+                });
+
+            modelBuilder.Entity("BirthClinic.Models.Clinic", b =>
+                {
+                    b.Navigation("BirthRooms");
+
+                    b.Navigation("Clinicians");
+
+                    b.Navigation("MaternityRooms");
+
+                    b.Navigation("RestRooms");
                 });
 
             modelBuilder.Entity("BirthClinic.Models.MaternityRoom", b =>

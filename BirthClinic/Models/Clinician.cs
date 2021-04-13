@@ -10,12 +10,11 @@ namespace BirthClinic.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DoB { get; set; }
-        public Clinic BirthClinic { get; set; }
-        public int BirthClinicId { get; set; }
         public Shift Shift { get; set; }
         public int ShiftId { get; set; }
-        public Birth Birth { get; set; }
-        public int BirthId { get; set; }
+        
+        public Birth? Birth { get; set; }
+        public int? BirthId { get; set; }
 
     }
 }

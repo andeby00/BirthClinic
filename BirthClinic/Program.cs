@@ -1,50 +1,48 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
-using BirthClinicApp.Models;
+using BirthClinic.DataAccess;
+using BirthClinic.Models;
 
-namespace BirthClinicApp
+namespace BirthClinic
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Context clinicContext = new Context();
+            SeedDB seedDb = new SeedDB();
 
+            List<Clinician> clinicianList1 = new List<Clinician>();
+            clinicianList1 = seedDb.GenerateClinicians();
+            clinicContext.AddRange(clinicianList1);
 
+            List<Clinician> clinicianList2 = new List<Clinician>();
+            clinicianList2 = seedDb.GenerateClinicians();
+            clinicContext.AddRange(clinicianList2);
 
+            List<Clinician> clinicianList3 = new List<Clinician>();
+            clinicianList3 = seedDb.GenerateClinicians();
+            clinicContext.AddRange(clinicianList3);
 
-            
+            List<Clinician> clinicianList4 = new List<Clinician>();
+            clinicianList4 = seedDb.GenerateClinicians();
+            clinicContext.AddRange(clinicianList4);
+
+            List<Clinician> clinicianList5 = new List<Clinician>();
+            clinicianList5 = seedDb.GenerateClinicians();
+            clinicContext.AddRange(clinicianList5);
+
+            List<Shift> shiftList = new List<Shift>();
+            shiftList.Add(seedDb.GenerateShift(clinicianList1, DateTime.Today));
+            shiftList.Add(seedDb.GenerateShift(clinicianList2, DateTime.Today.AddDays(1)));
+            shiftList.Add(seedDb.GenerateShift(clinicianList3, DateTime.Today.AddDays(2)));
+            shiftList.Add(seedDb.GenerateShift(clinicianList4, DateTime.Today.AddDays(3)));
+            shiftList.Add(seedDb.GenerateShift(clinicianList5, DateTime.Today.AddDays(4)));
+            clinicContext.AddRange(shiftList);
+
+            clinicContext.SaveChanges();
             
         }
-
-
-        public string GetRandomFirstName()
-        {
-            string firstName = "";
-            var sr = new StreamReader(@"FirstName.txt");
-            var r = new Random();
-            
-            for (int i = 0; i < r.Next(1,200); i++)
-            {
-                firstName = sr.ReadLine();
-            }
-
-            return firstName;
-        }
-
-        public string GetRandomLastName()
-        {
-            string lastName = "";
-            var sr = new StreamReader(@"FirstName.txt");
-            var r = new Random();
-
-            for (int i = 0; i < r.Next(1, 200); i++)
-            {
-                lastName = sr.ReadLine();
-            }
-
-            return lastName;
-        }
-
     }
 }
