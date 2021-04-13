@@ -33,7 +33,7 @@ namespace BirthClinic
             clinicianList5 = seedDb.GenerateClinicians();
             clinicContext.AddRange(clinicianList5);
 
-            List<Shift> shiftList = new List<Shift>();
+            List<Shift> shiftList = new List<Shift>();                                          
             shiftList.Add(seedDb.GenerateShift(clinicianList1, DateTime.Today));
             shiftList.Add(seedDb.GenerateShift(clinicianList2, DateTime.Today.AddDays(1)));
             shiftList.Add(seedDb.GenerateShift(clinicianList3, DateTime.Today.AddDays(2)));
@@ -41,8 +41,25 @@ namespace BirthClinic
             shiftList.Add(seedDb.GenerateShift(clinicianList5, DateTime.Today.AddDays(4)));
             clinicContext.AddRange(shiftList);
 
+            List<Parent> parents = new List<Parent>();          ////code below this hasnt been run 
+            parents.Add(seedDb.GenerateParent());
+            parents.Add(seedDb.GenerateParent());
+            parents.Add(seedDb.GenerateParent());
+            parents.Add(seedDb.GenerateParent());
+            parents.Add(seedDb.GenerateParent());
+            parents.Add(seedDb.GenerateParent());
+
+            seedDb.GenerateRooms(clinicContext);
+
+            List<Birth> births = new List<Birth>();
+
+            //births.Add(seedDb.GenerateScheduledBirth(clinicianList1, new List<Parent>(){  parents[1] }, clinicContext.birthRoom.[0], DateTime.Today.AddDays(6)));
+
+
             clinicContext.SaveChanges();
             
         }
     }
+
+    
 }
