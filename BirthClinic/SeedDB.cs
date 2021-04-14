@@ -12,7 +12,7 @@ namespace BirthClinic
         private static string GetRandomFirstName()
         {
             string firstName = "";
-            var sr = new StreamReader(@"FirstNames.txt");
+            var sr = new StreamReader(@"..\..\..\..\FirstNames.txt");
             var r = new Random();
 
             for (int i = 0; i < r.Next(1, 200); i++)
@@ -26,7 +26,7 @@ namespace BirthClinic
         private static string GetRandomLastName()
         {
             string lastName = "";
-            var sr = new StreamReader(@"LastNames.txt");
+            var sr = new StreamReader(@"..\..\..\..\LastNames.txt");
             var r = new Random();
 
             for (int i = 0; i < r.Next(1, 200); i++)
