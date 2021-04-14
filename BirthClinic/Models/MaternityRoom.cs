@@ -8,7 +8,7 @@ namespace BirthClinic.Models
     {
         public int Id { get; set; }
         public int RoomNumber { get; set; }
-        public List<Parent>? Parents { get; set; }
+        public List<Birth>? Births { get; set; }
 
     }
 }

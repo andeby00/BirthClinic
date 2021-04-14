@@ -8,6 +8,35 @@ namespace BirthClinic
 {
     public class SeedDB
     {
+
+        private static string GetRandomFirstName()
+        {
+            string firstName = "";
+            var sr = new StreamReader(@"FirstNames.txt");
+            var r = new Random();
+
+            for (int i = 0; i < r.Next(1, 200); i++)
+            {
+                firstName = sr.ReadLine();
+            }
+
+            return firstName;
+        }
+
+        private static string GetRandomLastName()
+        {
+            string lastName = "";
+            var sr = new StreamReader(@"LastNames.txt");
+            var r = new Random();
+
+            for (int i = 0; i < r.Next(1, 200); i++)
+            {
+                lastName = sr.ReadLine();
+            }
+
+            return lastName;
+        }
+
         public List<Clinician> GenerateClinicians()
         {
             List<Clinician> list = new List<Clinician>();
@@ -88,19 +117,6 @@ namespace BirthClinic
             return shift;
         }
 
-        public Birth GenerateScheduledBirth(List<Clinician> clinicians, List<Parent> parents, BirthRoom birthRoom, DateTime startTime)
-        {
-            Birth birth = new Birth()
-            {
-                Clinicians = clinicians,
-                Parents = parents,
-                BirthRoom = birthRoom,
-                ScheduledTime = startTime,
-            };
-
-            return birth;
-        }
-
         public List<Child> GenerateBornChildren(Birth birth, List<Parent> parents)
         {
             birth.Ended = 1;
@@ -136,65 +152,77 @@ namespace BirthClinic
             return parent;
         }
 
-        public void GenerateRooms(Context context)
+        public List<MaternityRoom> GenerateMaternityRooms()
         {
+            List<MaternityRoom> list = new List<MaternityRoom>();
             for (int i = 0; i < 22; i++)
             {
                 var temp = new MaternityRoom()
                 {
                     RoomNumber = i
                 };
-
-                context.Add(temp);
+                list.Add(temp);
             }
 
+            return list;
+        }
+        public List<RestRoom> GenerateRestRooms()
+        {
+            List<RestRoom> list = new List<RestRoom>();
             for (int i = 0; i < 5; i++)
             {
                 var temp = new RestRoom()
                 {
                     RoomNumber = i
                 };
-
-                context.Add(temp);
+                list.Add(temp);
             }
 
+            return list;
+        }
+        public List<BirthRoom> GenerateBirthRooms()
+        {
+            List<BirthRoom> list = new List<BirthRoom>();
             for (int i = 0; i < 15; i++)
             {
                 var temp = new BirthRoom()
                 {
                     RoomNumber = i
                 };
-
-                context.Add(temp);
+                list.Add(temp);
             }
+
+            return list;
         }
 
-        private static string GetRandomFirstName()
+        public Birth ScheduleBirth(List<Clinician> clinicians, List<Parent> parents, BirthRoom birthRoom, 
+                                            MaternityRoom maternityRoom, RestRoom restRoom, DateTime startTime)
         {
-            string firstName = "";
-            var sr = new StreamReader(@"FirstNames.txt");
-            var r = new Random();
-
-            for (int i = 0; i < r.Next(1, 200); i++)
+            Birth birth = new Birth()
             {
-                firstName = sr.ReadLine();
-            }
+                Clinicians = clinicians,
+                Parents = parents,
+                BirthRoom = birthRoom,
+                RestRoom = restRoom,
+                MaternityRoom = maternityRoom,
+                ScheduledTime = startTime,
+            };
 
-            return firstName;
+            return birth;
         }
 
-        private static string GetRandomLastName()
+        public void StartBirth(Birth birth)
         {
-            string lastName = "";
-            var sr = new StreamReader(@"LastNames.txt");
-            var r = new Random();
-
-            for (int i = 0; i < r.Next(1, 200); i++)
-            {
-                lastName = sr.ReadLine();
-            }
-
-            return lastName;
+            birth.Ended = 0;
         }
+
+        public List<Child> EndBirth(Birth birth)
+        {
+            birth.Ended = 1;
+            
+            birth.Children = GenerateBornChildren(birth, birth.Parents);
+            return birth.Children;
+        }
+
     }
 }

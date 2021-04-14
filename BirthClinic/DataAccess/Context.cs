@@ -26,7 +26,6 @@ namespace BirthClinic.DataAccess
         {
             ob.UseSqlServer(
                 @"Data Source = (localdb)\dab_server; Initial Catalog = BirthClinicDb; Integrated Security = True;");
-
         }
 
     }
