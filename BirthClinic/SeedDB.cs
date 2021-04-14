@@ -8,11 +8,12 @@ namespace BirthClinic
 {
     public class SeedDB
     {
+        private string path = @"C:\DAB\BirthClinic\BirthClinic\";
 
-        private static string GetRandomFirstName()
+        private string GetRandomFirstName()
         {
             string firstName = "";
-            var sr = new StreamReader(@"C:\DAB\BirthClinic\BirthClinic\FirstNames.txt");
+            var sr = new StreamReader($"{path}FirstNames.txt");
             var r = new Random();
 
             for (int i = 0; i < r.Next(1, 200); i++)
@@ -23,10 +24,10 @@ namespace BirthClinic
             return firstName;
         }
 
-        private static string GetRandomLastName()
+        private string GetRandomLastName()
         {
             string lastName = "";
-            var sr = new StreamReader(@"C:\DAB\BirthClinic\BirthClinic\LastNames.txt");
+            var sr = new StreamReader($"{path}LastNames.txt");
             var r = new Random();
 
             for (int i = 0; i < r.Next(1, 200); i++)
