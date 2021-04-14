@@ -25,7 +25,7 @@ namespace BirthClinic.DataAccess
         protected override void OnConfiguring(DbContextOptionsBuilder ob)
         {
             ob.UseSqlServer(
-                @"Data Source = (localdb)\dab_server; Initial Catalog = BirthClinicDb; Integrated Security = True;");
+                @"Data Source = (localdb)\MSSQLLocalDB; Initial Catalog = BirthClinicDb; Integrated Security = True;");
         }
 
     }

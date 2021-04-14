@@ -1,0 +1,9 @@
+Delete from dbo.birth
+Delete from dbo.birthRoom
+Delete from dbo.child
+Delete from dbo.ChildParent
+Delete from dbo.clinician
+Delete from dbo.maternityRoom
+Delete from dbo.parent
+Delete from dbo.restRoom
+Delete from dbo.shift
