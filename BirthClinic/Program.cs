@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using BirthClinic.DataAccess;
 using BirthClinic.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BirthClinic
 {
@@ -67,12 +69,45 @@ namespace BirthClinic
             births.Add(seedDb.ScheduleBirth(clinicianList3, new List<Parent>() { parents[2], parents[3] }, birthRooms[1], maternityRooms[1], restRooms[1], DateTime.Today.AddDays(2)));
             births.Add(seedDb.ScheduleBirth(clinicianList6, new List<Parent>() { parents[4], parents[5] }, birthRooms[2], maternityRooms[2], restRooms[2], DateTime.Today.AddDays(6)));
             births.Add(seedDb.ScheduleBirth(clinicianList1, new List<Parent>() { parents[8], parents[9] }, birthRooms[3], maternityRooms[3], restRooms[3], DateTime.Today));
-
+            clinicContext.AddRange(births);
             seedDb.StartBirth(births[0]);
 
             List<Child> childrenList1 = seedDb.EndBirth(births[4]);
             clinicContext.AddRange(childrenList1);
             clinicContext.SaveChanges();
+
+            var view1 = from birth in clinicContext.birth
+                        where birth.ScheduledTime < DateTime.Today.AddDays(4) && birth.ScheduledTime > DateTime.Today.AddDays(1)
+                        select birth;
+            Console.WriteLine("View 1:");
+            Console.WriteLine("_____________________________________");
+            foreach (Birth b in view1)
+            {
+                Console.WriteLine(@"Birth {0} is scheduled for {1}", b.Id, b.ScheduledTime);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            var view2 = clinicContext.birth
+                    .Where(b =>  b.ScheduledTime > DateTime.Now && b.ScheduledTime < DateTime.Today.AddDays(6) )
+                    //.Include(c => c.Clinicians)
+                    .Include(br => br.BirthRoom)
+                    .Include(rr => rr.RestRoom)
+                    .Include(mr => mr.MaternityRoom)
+
+                    .ToList();
+            Console.WriteLine("View 2:");
+            Console.WriteLine("_____________________________________");
+            foreach (var b in view2)
+            {
+                Console.WriteLine(@"Birth {0} is scheduled for {1}", b.Id, b.ScheduledTime);
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+
+            
         }
     }
 }
