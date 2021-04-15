@@ -16,4 +16,4 @@ Other considerations
 * All working staff are considered clinicians since they work in a clinic
 * Parents all get male names
 * All Children are Female - The best gender
-* We decided to seed all data, as the focus in this assignment was more on the main views.
+* We decided to seed all data, as opposed to inserting data at runtime, as the focus in this assignment was more on the main views.
