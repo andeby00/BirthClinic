@@ -279,6 +279,7 @@ namespace BirthClinic
             List<Child> childrenList1 = EndBirth(births[4]);
             clinicContext.AddRange(childrenList1);
             clinicContext.SaveChanges();
+            Console.WriteLine("Database seeded \n\n");
         }
     }
 }
