@@ -228,7 +228,7 @@ namespace BirthClinic
 
         public void SeedData(Context clinicContext)
         {
-            Console.WriteLine("Creating data and seeding it to the db . . .\n\n");
+            Console.WriteLine("\nCreating data and seeding it to the db . . .\n\n");
             
             List<Clinician> clinicians1 = GenerateClinicians();
             clinicContext.AddRange(clinicians1);

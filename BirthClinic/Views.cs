@@ -19,7 +19,7 @@ namespace BirthClinic
                         where birth.ScheduledTime < DateTime.Today.AddDays(4) && birth.ScheduledTime > DateTime.Today.AddDays(1)
                         select birth;
 
-            Console.WriteLine("View 1 - Planned births for next 3 days");
+            Console.WriteLine("\nView 1 - Planned births for next 3 days");
             Console.WriteLine(".......................................................");
 
             foreach (Birth b in view1)
@@ -51,7 +51,7 @@ namespace BirthClinic
                 .Include(r => r.Births)
                 .ToList();
 
-            Console.WriteLine("View 2 - Available rooms and clinicians for the next 5 days:");
+            Console.WriteLine("\nView 2 - Available rooms and clinicians for the next 5 days:");
             Console.WriteLine(".......................................................");
 
             Console.WriteLine("Available clinicians:");
@@ -177,7 +177,7 @@ namespace BirthClinic
                     .ToList();
 
 
-            Console.WriteLine("View 3 - Current births");
+            Console.WriteLine("\nView 3 - Current births");
             Console.WriteLine(".......................................................");
 
             Console.WriteLine("Current births:");
@@ -216,7 +216,7 @@ namespace BirthClinic
                         .Include(b => b.RestRoom)
                         .ToList();
 
-            Console.WriteLine("View 4 - Maternity rooms and 4h rest rooms in use with the parents and child/children");
+            Console.WriteLine("\nView 4 - Maternity rooms and 4h rest rooms in use with the parents and child/children");
             Console.WriteLine(".......................................................");
 
             Console.WriteLine("Rooms in use:");
@@ -262,7 +262,7 @@ namespace BirthClinic
                         .Include(b => b.RestRoom)
                         .ToList();
 
-            Console.WriteLine("View 5 - Planned births and its reserved rooms");
+            Console.WriteLine("\nView 5 - Planned births and its reserved rooms");
             Console.WriteLine(".......................................................");
 
             Console.WriteLine("Planned births: ");
