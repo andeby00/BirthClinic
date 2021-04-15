@@ -8,7 +8,7 @@ namespace BirthClinic
 {
     public class SeedDB
     {
-        private string path = @"C:\Users\aspsc\Documents\SW\DAB_NY\Aflevering2\BirthClinic\BirthClinic\";
+        private string path = @"..\..\..\";
 
         private string GetRandomFirstName()
         {
