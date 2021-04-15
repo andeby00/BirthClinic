@@ -8,7 +8,7 @@ namespace BirthClinic
 {
     public class SeedDB
     {
-        private string path = @"C:\Users\aspsc\Documents\SW\DAB_NY\Aflevering2\BirthClinic\BirthClinic\";
+        private string path = @"..\..\..\";
 
         private string GetRandomFirstName()
         {
@@ -228,30 +228,19 @@ namespace BirthClinic
 
         public void SeedData(Context clinicContext)
         {
-            Console.WriteLine("Creating data and seeding it to the db . . .\n\n");
+            Console.WriteLine("\nCreating data and seeding it to the db . . .\n\n");
             
-            List<Clinician> clinicians1 = new List<Clinician>();
-            clinicians1 = GenerateClinicians();
+            List<Clinician> clinicians1 = GenerateClinicians();
             clinicContext.AddRange(clinicians1);
-
-            List<Clinician> clinicians2 = new List<Clinician>();
-            clinicians2 = GenerateClinicians();
+            List<Clinician> clinicians2 = GenerateClinicians();
             clinicContext.AddRange(clinicians2);
-
-            List<Clinician> clinicians3 = new List<Clinician>();
-            clinicians3 = GenerateClinicians();
+            List<Clinician> clinicians3 = GenerateClinicians();
             clinicContext.AddRange(clinicians3);
-
-            List<Clinician> clinicians4 = new List<Clinician>();
-            clinicians4 = GenerateClinicians();
+            List<Clinician> clinicians4 = GenerateClinicians();
             clinicContext.AddRange(clinicians4);
-
-            List<Clinician> clinicians5 = new List<Clinician>();
-            clinicians5 = GenerateClinicians();
+            List<Clinician> clinicians5 = GenerateClinicians();
             clinicContext.AddRange(clinicians5);
-
-            List<Clinician> clinicians6 = new List<Clinician>();
-            clinicians6 = GenerateClinicians();
+            List<Clinician> clinicians6 = GenerateClinicians();
             clinicContext.AddRange(clinicians6);
 
             List<Shift> shiftList = new List<Shift>();
@@ -290,6 +279,7 @@ namespace BirthClinic
             List<Child> childrenList1 = EndBirth(births[4]);
             clinicContext.AddRange(childrenList1);
             clinicContext.SaveChanges();
+            Console.WriteLine("Database seeded \n\n");
         }
     }
 }
